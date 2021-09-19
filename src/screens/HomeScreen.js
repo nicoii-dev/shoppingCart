@@ -12,7 +12,7 @@ class HomeScreen extends Component {
             <View style={styles.container}>
                 <Button title="Electronics" onPress={() => this.props.navigation.navigate('Electronics')} />
                 <Button title="Books" onPress={() => this.props.navigation.navigate('Books')} />
-                <Button title="Books" onPress={() => this.props.navigation.navigate('Cart')} />
+                <Button title="Cart" onPress={() => this.props.navigation.navigate('Cart')} />
             </View>
         );
     }

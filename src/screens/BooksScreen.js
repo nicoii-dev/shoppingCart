@@ -5,12 +5,8 @@ import {
     StyleSheet,FlatList,TouchableOpacity
 } from "react-native";
 
-import Products from "../components/Products";
 import { connect } from 'react-redux'
-import { PROPERTY_TYPES } from "@babel/types";
-// import { useDispatch } from 'react-redux';
-
-// const dispatch = useDispatch();
+import { ADD_TO_CART } from "../redux/actionType";
 
 const books = [
     {
@@ -30,7 +26,9 @@ const books = [
     }
 ]
 
-function BooksScreen(){
+
+
+function BooksScreen(props){
         return (
             <View style={styles.container}>
                 <FlatList
@@ -38,7 +36,7 @@ function BooksScreen(){
                     keyExtractor = {(item) => item.id}
                     renderItem={({ item }) =>(
                         <TouchableOpacity
-                            onPress={()=>mapDispatchToProps.addItemToCart(item)}
+                            onPress={()=>props.addToCart(item)}
                         >
                             <Text>{item.name}</Text>
                         </TouchableOpacity>
@@ -50,19 +48,11 @@ function BooksScreen(){
 
 }
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = dispatch =>{
     return {
-        addItemToCart: item => dispatch({ type: 'ADD_TO_CART', payload: item })
+        addToCart: item => dispatch({ type: ADD_TO_CART, payload: item })
     }
-    
 }
-
-// function mapDispatchToProps(dispatch,item) {
-//     console.log(item)
-//     return {    
-//         addItemToCart: item => dispatch({ type: 'ADD_TO_CART', payload: item })
-//     }
-// }
 
 export default connect(null, mapDispatchToProps)(BooksScreen);
 
