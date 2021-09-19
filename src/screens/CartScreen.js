@@ -12,7 +12,6 @@ import { REMOVE_FROM_CART } from "../redux/actionType";
 import cartItems from "../redux/cartReducer";
 
 function CartScreen(props){
-    console.log(props.cartItems)
     return (
         <View>
             <FlatList 

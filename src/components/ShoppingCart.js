@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity
 } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import ElectronicsScreen from "../screens/ElectronicsScreen";
@@ -14,35 +15,21 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
-class ShoppingCart extends Component {
-    render() {
-        return (
-            <MyStack />
-        );
-    }
-}
-export default ShoppingCart;
 
-    function MyStack() {
+    function ShoppingCart(props) {
         return (
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen name="Home" component={HomeScreen} />
                     <Stack.Screen name="Electronics" component={ElectronicsScreen} />
                     <Stack.Screen name="Books" component={BooksScreen} 
-                        options={{
-                            title: "",
+                        options={({ navigation }) => ({
                             headerRight: () => (
-                                // <TouchableOpacity
-                                //     onPress = {() =>{
-                                //         navigation.navigate('Cart');
-                                //     }}
-                                // >
-                                //     <Icon name = 'shopping-cart' />
-                                // </TouchableOpacity>
-                                <ShoppingCartIcon />
+                            <TouchableOpacity onPress={() => navigation.navigate("Cart")} > 
+                                <ShoppingCartIcon/>
+                            </TouchableOpacity>
                             ),
-                        }}
+                        })}
                     />
                     <Stack.Screen name="Cart" component={CartScreen}     
                     />
@@ -50,6 +37,8 @@ export default ShoppingCart;
           </NavigationContainer>
         );
       }
+      
+    export default ShoppingCart;
 
 const styles = StyleSheet.create({
     container: {

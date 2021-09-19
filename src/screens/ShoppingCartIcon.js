@@ -6,7 +6,6 @@ import {
     Platform
 } from "react-native";
 
-import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 

@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import Products from "../components/Products";
 import { connect } from 'react-redux'
+import { ADD_TO_CART } from "../redux/actionType";
 
 const electronics = [
     {
@@ -42,7 +43,7 @@ class ElectronicsScreen extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addItemToCart: (product) => dispatch({ type: 'ADD_TO_CART', payload: product })
+        addItemToCart: (product) => dispatch({ type: ADD_TO_CART, payload: product })
     }
 }
 
