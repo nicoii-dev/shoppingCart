@@ -1,13 +1,15 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./actionType";
 
-export const addToCart = () => (
+export const addToCart = item => (
     {
-        type: ADD_TO_CART
+        type: ADD_TO_CART,
+        payload: item
     }
 )
 
-export const removeFromCart = () => (
+export const removeFromCart = item => (
     {
-        type: REMOVE_FROM_CART
+        type: REMOVE_FROM_CART,
+        payload: item
     }
 )

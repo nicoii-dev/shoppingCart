@@ -4,26 +4,31 @@ import {
     View,
     Text,
     StyleSheet
+    ,FlatList,TouchableOpacity
 } from "react-native";
 import Products from '../components/Products'
 import { connect } from 'react-redux'
+import { REMOVE_FROM_CART } from "../redux/actionType";
+import cartItems from "../redux/cartReducer";
 
-class CartScreen extends Component {
+function CartScreen(props){
+    console.log(props.cartItems)
+    return (
+        <View>
+            <FlatList 
+                data={props.cartItems}
+                keyExtractor = {(item) => item.id}
+                renderItem={({ item }) =>(
+                    <TouchableOpacity
+                        onPress={()=>props.removeFromCart(item)}
+                    >
+                        <Text>{item.name}</Text>
+                    </TouchableOpacity>
 
-    render() {
-        console.log(this.props.cartItems)
-
-        return (
-            <View style={styles.container}>
-                {this.props.cartItems.length > 0 ?
-                    <Products
-                        onPress={this.props.removeItem}
-                        products={this.props.cartItems} />
-                    : <Text>No items in your cart</Text>
-                }
-            </View>
-        );
-    }
+                )}
+            />
+        </View>
+    )
 }
 
 const mapStateToProps = (state) => {
@@ -34,7 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        removeItem: (product) => dispatch({ type: 'REMOVE_FROM_CART', payload: product })
+        removeFromCart: item => dispatch({ type: REMOVE_FROM_CART, payload: item })
     }
 }
 
